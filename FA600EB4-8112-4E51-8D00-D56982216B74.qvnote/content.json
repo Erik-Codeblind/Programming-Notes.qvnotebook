@@ -4,7 +4,16 @@
     {
       "type": "code",
       "language": "javascript",
-      "data": "// Create a new object with Object.assign \nObject.assign({}, state, {\n  visibilityFilter: action.filter\n});\n\n// Same thing, but using es6 spread operator\n{...state, {\n  visibilityFilter: action.filter\n}};"
+      "data": "// Create a new object with Object.assign \nObject.assign({}, Object1, Object2);\n\n// Same thing, but using es6 spread operator\n{...Object1, ...Object2};"
+    },
+    {
+      "type": "markdown",
+      "data": "## Examples\n<https://Erik-Codeblind.jsbin.com/riyuhid/edit?js,console>"
+    },
+    {
+      "type": "code",
+      "language": "javascript",
+      "data": "let objA = {\n  type: 'OBJ A',\n  value: 'Apple',\n  a: true\n};\n\nlet objB = {\n  type: 'OBJ B',\n  value: 'Banana',\n  b: true\n  \n};\n\nlet objC = Object.assign({}, objA, objB);\nconsole.log(objC);\n// [object Object] {\n//   a: true,\n//   b: true,\n//   type: \"OBJ B\",\n//   value: \"Banana\"\n// }\n\nlet objD = {...objB, ...objA};\nconsole.log(objD);\n// [object Object] {\n//   a: true,\n//   b: true,\n//   type: \"OBJ A\",\n//   value: \"Apple\"\n// }"
     }
   ]
 }
