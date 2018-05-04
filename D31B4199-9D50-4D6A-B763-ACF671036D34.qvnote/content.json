@@ -1,0 +1,9 @@
+{
+  "title": "React Component Lifecycle",
+  "cells": [
+    {
+      "type": "markdown",
+      "data": "## componentWillMount\n\n## componentDidMount\n\n## componentWillReceiveProps\n\n## shouldComponentUpdate \nExecutes before re-rendering component. Return false to prevent component from re-rendering.\n\n## componentWillUpdate\nBefore rendering, but after new props and state is returned.\n\n## componentDidUpdate\n\n\n## componentWillUnmount\n\n## Coming React 17\nUNSAFE_componentWillMount\nUNSAFE_componentWillRecieveProps\nUNSAFE_componentWillUpdate\ngetDerivedStateFromProps\ngetSnapshotBeforeUpdate"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "title": "React/Redux Basics",
+  "cells": [
+    {
+      "type": "markdown",
+      "data": "## Docs and Cheats\n\n* React cheat sheet <https://devhints.io/react>\n* Redux\n  * Docs <https://redux.js.org/> \n  * Cheat sheet <https://devhints.io/redux>\n\n## Redux\n\n### Actions\n\nActions are data payloads sent to the store with `store.dispatch()`."
+    },
+    {
+      "type": "code",
+      "language": "javascript",
+      "data": "const ADD_TODO = 'ADD_TODO'\n\n{\n  type: ADD_TODO,\n  text: 'Build my first Redux app'\n}"
+    },
+    {
+      "type": "markdown",
+      "data": "Actions must have a `type`, but otherwise the structure is up to the developer. Suggest standards can be found at [Flux Standard Action](https://github.com/redux-utilities/flux-standard-action)."
+    },
+    {
+      "type": "markdown",
+      "data": "### Action Creators\nActions creators return an action. That's it. For example, in the example below, `addTodo()` creates an action `ADD_TODO` containing the value `text`. "
+    },
+    {
+      "type": "code",
+      "language": "javascript",
+      "data": "function addTodo(text) {\n  return {\n    type: ADD_TODO,\n    text\n  }\n}"
+    },
+    {
+      "type": "markdown",
+      "data": "You call action creators with the `dispatch()` function. "
+    },
+    {
+      "type": "code",
+      "language": "javascript",
+      "data": "dispatch(addTodo(text))"
+    },
+    {
+      "type": "markdown",
+      "data": "### Bound Action Creators\nBound action creators is a pattern for creating functions to dispatch action creators immediately."
+    },
+    {
+      "type": "code",
+      "language": "javascript",
+      "data": "const boundAddTodo = text => dispatch(addTodo(text))"
+    },
+    {
+      "type": "markdown",
+      "data": "The `bindActionCreators` takes an object of `{ key: action creator }` and returns an object wrapping the action creators in dispatch calls. **This is used when you want to pass action creators to a component that is not aware of Redux.**"
+    },
+    {
+      "type": "code",
+      "language": "javascript",
+      "data": "# TodoActionCreators.js\n\nexport function addTodo(text) {\n  return {\n    type: 'ADD_TODO',\n    text\n  }\n}\n\nexport function removeTodo(id) {\n  return {\n    type: 'REMOVE_TODO',\n    id\n  }\n}"
+    },
+    {
+      "type": "code",
+      "language": "javascript",
+      "data": "# SomeComponent.js\n\nimport { Component } from 'react'\nimport { bindActionCreators } from 'redux'\nimport { connect } from 'react-redux'\n\nimport * as TodoActionCreators from './TodoActionCreators'\nconsole.log(TodoActionCreators)\n// {\n//   addTodo: Function,\n//   removeTodo: Function\n// }\n\nclass TodoListContainer extends Component {\n  constructor(props) { \n    super(props);\n\n    const {dispatch} = props;\n\n    // Here's a good use case for bindActionCreators:\n    // You want a child component to be completely unaware of Redux.\n    // We create bound versions of these functions now so we can\n    // pass them down to our child later.\n\n    this.boundActionCreators = bindActionCreators(TodoActionCreators, dispatch)\n    console.log(this.boundActionCreators)\n    // {\n    //   addTodo: Function,\n    //   removeTodo: Function\n    // }\n  }\n}\n\nexport default connect(\n  state => ({ todos: state.todos })\n)(TodoListContainer)"
+    },
+    {
+      "type": "markdown",
+      "data": "## Reducers\n*Reducers specify how the application's state changes in response to actions sent to the store.* They are pure functions and should not make API calls, mutate values, or cause side effects. \n\n"
+    }
+  ]
+}
