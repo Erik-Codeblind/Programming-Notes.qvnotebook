@@ -1,0 +1,10 @@
+{
+  "title": "Creating objects without side-effects (maybe)",
+  "cells": [
+    {
+      "type": "code",
+      "language": "javascript",
+      "data": "// Create a new object with Object.assign \nObject.assign({}, state, {\n  visibilityFilter: action.filter\n});\n\n// Same thing, but using es6 spread operator\n{...state, {\n  visibilityFilter: action.filter\n}};"
+    }
+  ]
+}
