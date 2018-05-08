@@ -1,0 +1,10 @@
+{
+  "title": "ES6 Function to Convert Query Params into a Key Value Hash",
+  "cells": [
+    {
+      "type": "code",
+      "language": "javascript",
+      "data": "export const locationSearchToHash = paramsString => {\n  return paramsString.slice(1).split('&').reduce((acc, current) => {\n    let pair = current.split('=');\n    if (pair.length === 2) {\n      let ins = {};\n      ins[pair[0]] = pair[1];\n      return { ...acc, ...ins };\n    } else {\n      return acc;\n    }\n  }, {});\n};"
+    }
+  ]
+}
